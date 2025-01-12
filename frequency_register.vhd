@@ -12,3 +12,19 @@ entity frequency_reg is
     q : out std_logic_vector(a-1 downto 0) -- register output
   );
 end frequency_reg;
+
+architecture behavioral of frequency_reg is
+begin
+  process (d, clk, load, reset_bar)
+  begin
+    if reset_bar = '0' then
+      q <= "00000000000000";
+    elsif rising_edge(clk) then
+      if (load = '1') then
+        q <= d;
+      else
+        null;
+      end if;
+    end if;
+  end process;
+end behavioral;
