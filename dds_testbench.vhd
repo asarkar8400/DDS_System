@@ -1,6 +1,3 @@
--- Testbench for Task 6 of Laboratory 10, Spring 2023
-
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -42,9 +39,7 @@ begin
 		);
 
 	freq_val <= "00000000000010";
-	
 	load_freq <= '0', '1' after 7 * period, '0' after 10 * period;
-		
 	reset_bar <= '0', '1' after 4 * period;	-- reset signal
 	
 	clock: process				-- system clock
@@ -56,6 +51,3 @@ begin
 		std.env.finish;
 	end process;
 end tb_architecture;
-
-
-
