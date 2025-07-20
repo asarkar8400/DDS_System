@@ -62,6 +62,9 @@ The testbench:
 - Sets `freq_val` using a 14-bit signal 
 - Observes the resulting `dac_sine_value`.
 
+## DDS System Generated 40kHz Sine Wave in Simulation:
+<img width="1697" height="555" alt="dds_screenshot" src="https://github.com/user-attachments/assets/6137a98d-f530-480c-b986-f862b4504a91" />
+
 ---
 ## Implementation on Hardware
 The system was sythesized onto a Lattice FPGA and the register containing `dac_sine_value` is passed through a DAC, followed by a low pass filter (LPF). The output was then validated on an oscilloscope and used switches as input to set the output sine wave frequency dynamically, and a push button to trigger frequency loading.
