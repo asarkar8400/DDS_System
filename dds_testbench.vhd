@@ -38,7 +38,7 @@ begin
 			dac_sine_value => dac_sine_value
 		);
 
-	freq_val <= "00000000000010";
+	freq_val <= "00001010010000";
 	load_freq <= '0', '1' after 7 * period, '0' after 10 * period;
 	reset_bar <= '0', '1' after 4 * period;	-- reset signal
 	
