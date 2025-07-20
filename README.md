@@ -40,8 +40,7 @@ Where:
 - Generates `min` and `max` flags for FSM control.
 
 ### Phase Accumulator FSM
-![Uploading image.png…]()
-
+<img width="475" height="528" alt="image" src="https://github.com/user-attachments/assets/15745515-ff31-4816-b4f6-4a295853ad5b" />
 - Finite State Machine with 4 quadrants (Q1–Q4) representing sine wave segments.
 - Controls direction (`up`) and half-cycle flag (`pos`).
 
