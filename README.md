@@ -10,9 +10,7 @@ The system accepts a frequency control word (`freq_val`) and outputs an 8-bit si
 
 The output frequency is determined by:
 
-\[
-f_{\text{out}} = \frac{\text{freq\_val} \times f_{\text{clk}}}{2^{14}}
-\]
+<img width="122" height="67" alt="image" src="https://github.com/user-attachments/assets/073de0d5-f1b9-44e6-94be-2bd0bdc257da" />
 
 Where:
 - `freq_val` is a 14-bit tuning word (from switches)
@@ -22,47 +20,42 @@ Where:
 ---
 
 ## 🔧 Block Diagram and Component Descriptions
+<img width="1321" height="322" alt="image" src="https://github.com/user-attachments/assets/c13d77af-681f-490f-bb23-1e6ed7cd60c9" />
 
-Below is a high-level description of each module in the DDS system:
+### Edge Detector FSM
+<img width="522" height="495" alt="image" src="https://github.com/user-attachments/assets/4ad92a71-9e69-4077-9716-d85cce1f8dfb" />
 
-
-### 🕹️ Switches
-- 14-bit user input that sets the output sine wave frequency.
-- Value is captured when the push button is pressed.
-
-### 🔘 Push Button (PB)
-- User-controlled input to load the new frequency setting.
-
-### 🧠 Edge Detector FSM
 - Detects the **rising edge** of the `load_freq` signal.
 - Sends a 1-cycle pulse to load the new value into the Frequency Register.
 
-### 📦 Frequency Register
+### Frequency Register
 - 14-bit register (`a = 14`).
 - Stores the frequency control word from switches.
 - Updated only on a rising edge of the `load_freq` signal.
 
-### 🔁 Phase Accumulator
+### Phase Accumulator
 - Adds/subtracts the frequency word each clock cycle.
 - Acts as the core of DDS by rolling over based on phase width.
 - Top `m = 7` bits used to index the sine LUT.
 - Generates `min` and `max` flags for FSM control.
 
-### ⚙️ Phase Accumulator FSM
+### Phase Accumulator FSM
+![Uploading image.png…]()
+
 - Finite State Machine with 4 quadrants (Q1–Q4) representing sine wave segments.
 - Controls direction (`up`) and half-cycle flag (`pos`).
 
-### 📘 Sine Lookup Table (ROM)
+### Sine Lookup Table
 - 128-entry table with unsigned quarter-cycle sine values (7-bit wide).
 - Converts phase to sine amplitude for 1/4 cycle.
 - Saves memory and leverages symmetry.
 
-### ➕ Adder/Subtracter
+### Adder/Subtracter
 - Uses `pos` flag to reflect sine value for negative half.
 - Converts unsigned sine to signed 8-bit value centered around 128.
 - Outputs final `dac_sine_value`.
 
-### ⏱️ Clock and Reset
+### Clock and Reset
 - `clk`: System clock, typically 1 MHz in simulation.
 - `reset_bar`: Active-low asynchronous reset.
 
