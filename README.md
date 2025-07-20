@@ -10,7 +10,7 @@ The system accepts a frequency control word (`freq_val`) and outputs an 8-bit si
 
 The output frequency is determined by:
 
-<img width="122" height="67" alt="image" src="https://github.com/user-attachments/assets/073de0d5-f1b9-44e6-94be-2bd0bdc257da" />
+<img width="116" height="58" alt="image" src="https://github.com/user-attachments/assets/d3d75ea5-4c0d-4cf0-97ca-358f539fbbae" />
 
 Where:
 - `freq_val` is a 14-bit tuning word (from switches)
