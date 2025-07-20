@@ -6,7 +6,7 @@ This project implements a **Direct Digital Synthesis (DDS)** system in VHDL to g
 
 The system accepts a frequency control word (`freq_val`) and outputs an 8-bit sine wave (`dac_sine_value`), suitable for digital-to-analog conversion.
 
-## 📐 DDS Output Frequency Formula
+## DDS Output Frequency Formula
 
 The output frequency is determined by:
 
@@ -19,7 +19,7 @@ Where:
 
 ---
 
-## 🔧 Block Diagram and Component Descriptions
+## Block Diagram and Component Descriptions
 <img width="1321" height="322" alt="image" src="https://github.com/user-attachments/assets/c13d77af-681f-490f-bb23-1e6ed7cd60c9" />
 
 ### Edge Detector FSM
@@ -55,20 +55,15 @@ Where:
 - Converts unsigned sine to signed 8-bit value centered around 128.
 - Outputs final `dac_sine_value`.
 
-### Clock and Reset
-- `clk`: System clock, typically 1 MHz in simulation.
-- `reset_bar`: Active-low asynchronous reset.
-
----
-
-## 🧪 Testbench
-
+## Testbench
 The testbench:
-- Drives the system clock (`1 MHz`).
-- Pulses `reset_bar` and `load_freq` at specific times.
-- Sets `freq_val` using a 14-bit signal (e.g., 656 for ~40 kHz output).
+- Drives the system clock at `1 MHz`
+- Pulses `load_freq` to reload value into `freq_val`
+- Reset is active-low asynchronous
+- Sets `freq_val` using a 14-bit signal 
 - Observes the resulting `dac_sine_value`.
 
-```vhdl
--- Example freq_val setting:
-freq_val <= "00001010010000"; -- Decimal 656 = ~40 kHz output
+---
+## Implementation on Hardware
+The system was sythesized onto a Lattice FPGA and the register containing `dac_sine_value` is passed through a DAC, followed by a low pass filter (LPF). The output was then validated on an oscilloscope and used switches as input to set the output sine wave frequency dynamically, and a push button to trigger frequency loading.
+
