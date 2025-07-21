@@ -4,7 +4,7 @@
 
 This project implements a **Direct Digital Synthesis (DDS)** system in VHDL to generate sine waves with frequency selection using a phase accumulator and lookup table (LUT). This system was deployed onto a Lattice FPGA, validated on an oscilloscope, and includes a testbench for functional verification.
 <img width="1697" height="555" alt="dds_screenshot" src="https://github.com/user-attachments/assets/6137a98d-f530-480c-b986-f862b4504a91" />
-**[DDS Generated 40kHz Waveform]*
+*[DDS Generated 40kHz Waveform]*
 
 The system accepts a frequency control word (`freq_val`) and outputs an 8-bit sine wave (`dac_sine_value`), suitable for digital-to-analog conversion.
 
