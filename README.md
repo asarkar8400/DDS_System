@@ -68,4 +68,3 @@ The testbench:
 ---
 ## Implementation on Hardware
 The system was sythesized onto a Lattice FPGA and the register containing `dac_sine_value` is passed through a DAC, followed by a low pass filter (LPF). The output was then validated on an oscilloscope and used switches as input to set the output sine wave frequency dynamically, and a push button to trigger frequency loading.
-
